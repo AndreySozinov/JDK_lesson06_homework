@@ -26,16 +26,20 @@ public class Main {
             Game game = new Game(CHOSEN_DOOR, true);
             gameResultsIfChanging.put(i, game.isGamerWin());
         }
-        float winsAmount1 = Collections.frequency(new ArrayList<Boolean>(gameResultsIfChanging.values()), true);
+        float winsAmount1 = Collections.frequency(new ArrayList<>(gameResultsIfChanging.values()), true);
 
         for (int i = 0; i < GAMES; i++){
             Game game = new Game(CHOSEN_DOOR, false);
             gameResultsIfNot.put(i, game.isGamerWin());
         }
-        float winsAmount2 = Collections.frequency(new ArrayList<Boolean>(gameResultsIfNot.values()), true);
+        float winsAmount2 = Collections.frequency(new ArrayList<>(gameResultsIfNot.values()), true);
 
-        System.out.printf("Процент побед если дверь меняется: %.2f\n", winsAmount1 * 100 / GAMES);
-        System.out.printf("Процент побед если дверь НЕ меняется: %.2f", winsAmount2 * 100 / GAMES);
+        System.out.printf("Статистика если дверь меняется: " +
+                "побед: %.0f; проигрышей: %.0f; процент побед: %.2f%%\n",
+                winsAmount1, GAMES - winsAmount1, winsAmount1 / GAMES * 100);
+        System.out.printf("Статистика если дверь НЕ меняется: " +
+                        "побед: %.0f; проигрышей: %.0f; процент побед: %.2f%%\n",
+                winsAmount2, GAMES - winsAmount2, winsAmount2 / GAMES * 100);
     }
 }
 
